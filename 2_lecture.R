@@ -36,3 +36,13 @@ cbind(x,apply(x,2,centeringFunction))
 for(i in 1:10){
   print("hello")
 }
+# create factorial function with a for loop, just for fun
+myFactorial <- function(x){
+  n = 1
+  for(i in 1:x){
+    n = n * (x-i+1)
+  }
+  return(n)
+}
+
+
