@@ -31,3 +31,8 @@ cbind(x,apply(x,2,mean))
 centeringFunction = function(x){ x - mean(x) }
 
 cbind(x,apply(x,2,centeringFunction))
+
+# LOOPS
+for(i in 1:10){
+  print("hello")
+}
