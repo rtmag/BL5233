@@ -72,6 +72,7 @@ class(myList[[4]])
 
 myData = read.table("~/Downloads/allDatasets/lizards.txt",header=T)
 data(CO2)
-write.table(CO2,"CO2_test.txt",sep="\t",quote=FALSE)
+write.table(CO2,"CO2_test.txt",sep="\t",quote=FALSE,row.names=F)
 myData2 = read.table("CO2_test.txt",header=T)
 
+rowSums(apply(CO2,2,is.na))
