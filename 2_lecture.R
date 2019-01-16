@@ -16,3 +16,18 @@ x[,2] = rnorm(3,1,1)
 x[,3] = rnorm(3,1,1)
 
 x[,2]
+x[,1] + x[,2]
+x[,1] * x[,2]
+
+cbind(x[,1],x[,2])
+rbind(x[,1],x[,2])
+
+cbind(x,1:3)
+
+dim(x)
+
+cbind(x,apply(x,2,mean))
+
+centeringFunction = function(x){ x - mean(x) }
+
+cbind(x,apply(x,2,centeringFunction))
