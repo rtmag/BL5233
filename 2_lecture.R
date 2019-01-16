@@ -9,3 +9,10 @@ match(vector1, vector2)
 
 vector1[!is.na(match(vector1, vector2))]
 
+# MATRIX stuff
+x = matrix(0, nrow = 3, ncol = 3 )
+x[,1] = rnorm(3,1,1)
+x[,2] = rnorm(3,1,1)
+x[,3] = rnorm(3,1,1)
+
+x[,2]
