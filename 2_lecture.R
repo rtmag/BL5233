@@ -45,4 +45,9 @@ myFactorial <- function(x){
   return(n)
 }
 
+a = 10; b = "Hola";
+if(a>5 & b=="Hola") {print("OK")}
+
+a = 10; b = "ola";
+if(a>5 & b=="Hola") {print("OK")} else {print("Cannot")}
 
