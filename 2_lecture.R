@@ -57,3 +57,21 @@ x[,1] = rnorm(3,1,1)
 x[,2] = rnorm(3,1,1)
 x[,3] = rnorm(3,1,1)
 if(a>5 & b=="Hola") { apply(x,1,mean) }
+######################################################################
+myList <- list(1,"calor",1:10,x)
+
+lapply(myList,print)
+lapply(myList,length)
+
+class(myList[[1]])
+class(myList[[2]])
+class(myList[[3]])
+class(myList[[4]])
+######################################################################
+# READ LIZARD DATA
+
+myData = read.table("~/Downloads/allDatasets/lizards.txt",header=T)
+data(CO2)
+write.table(CO2,"CO2_test.txt",sep="\t",quote=FALSE)
+myData2 = read.table("CO2_test.txt",header=T)
+
