@@ -57,5 +57,24 @@ m1 <- rpart(
   )
 rpart.plot(m1,main="Fruit ~ Root")
 
-# 12
-pbinom(30,10,0.9)
+# 12 ??
+y<-dnbinom(0:50,mu=10,size=0.9)
+plot(0:50,y,type="l")
+pnbinom(30,mu=10,size=0.9) # 0.9427475?
+# 13 ??
+
+# 14
+random_nb = rnbinom(1000,mu=10,size=0.9)
+# 15
+barplot(table(random_nb))
+# 16
+table(random_nb)/1000
+# 17
+ix = seq(from=0,to=80,by=3)
+x = ix
+y = table(random_nb)
+text = table(random_nb)/1000
+text(x+3,y[ix]+10,text[ix])
+# 18 ???
+lines(0:80,dnbinom(0:80,mu=10,size=0.9)*1000,col="red")
+# 19
