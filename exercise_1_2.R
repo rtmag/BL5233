@@ -74,7 +74,7 @@ ix = seq(from=0,to=80,by=3)
 x = ix
 y = table(random_nb)
 text = table(random_nb)/1000
-text(x+3,y[ix]+10,text[ix])
+text(x+3,y[ix+1],text[ix])
 # 18 ???
 lines(0:80,dnbinom(0:80,mu=10,size=0.9)*1000,col="red")
 # 19
