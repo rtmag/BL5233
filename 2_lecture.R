@@ -76,3 +76,26 @@ write.table(CO2,"CO2_test.txt",sep="\t",quote=FALSE,row.names=F)
 myData2 = read.table("CO2_test.txt",header=T)
 
 rowSums(apply(CO2,2,is.na))
+#######################################################################
+protectArea <- c('typeI','typeII','typeIII','typeIV','typeV') 
+PAtype <- sample(protectArea, 1000, replace = T)
+deforest <- runif(1000,0,1)
+area <- rnorm(1000,5000,200)
+poachEvents <- rpois(1000,30)
+PAdata = data.frame(PAtype, deforest, area, poachEvents)
+
+library(dplyr)
+
+# Several subsects, equal to [ x<10 & y<20 ]
+filter(PAdata, PAtype == 'typeI', area >= 5000)
+
+# is like SORT, sorts by PAtype alphabetically first and then numerically by area
+arrange(PAdata, PAtype, area)
+
+# subset takes only column area and deforest
+PAdata2 = select(PAdata, area,deforest)
+
+PAtypeGroup <- group_by(PAdata, PAtype)
+PAtypeSummary <- summarise(PAtypeGroup,
+  count = n(), meanPoach = mean(poachEvents, na.rm =
+TRUE))
