@@ -56,11 +56,19 @@ m1 <- rpart(
   method  = "anova"
   )
 rpart.plot(m1,main="Fruit ~ Root")
-
+######################################
 # 12 ??
+par(mfrow=c(2,2))
+
 y<-dnbinom(0:50,mu=10,size=0.9)
 plot(0:50,y,type="l")
-pnbinom(30,mu=10,size=0.9) # 0.9427475?
+pnbinom(30,mu=10,size=0.9,lower.tail=FALSE) # 0.05725252 ?
+
+y<-pnbinom(0:50,mu=10,size=0.9)
+plot(0:50,y,type="l")
+
+y<-pnbinom(30:999999,mu=10,size=0.9)
+sum(y)
 # 13 ??
 
 # 14
