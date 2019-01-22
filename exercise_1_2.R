@@ -58,3 +58,4 @@ m1 <- rpart(
 rpart.plot(m1,main="Fruit ~ Root")
 
 # 12
+pbinom(30,10,0.9)
