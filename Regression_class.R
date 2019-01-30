@@ -95,3 +95,24 @@ plot(model8)
 model10<-step(model1)
 
 ##########
+library(MuMIn)
+models_sel <- model.sel(model1,model2,model3,model4,model5,model6,model7, rank="AICc")
+mod.avg <- summary(model.avg(models_sel,subset=delta<2))
+
+model1<-lm(log(ozone) ~ 1 , data = dataO3)
+model2<-lm(log(ozone) ~ temp , data = dataO3)
+model3<-lm(log(ozone) ~ wind , data = dataO3)
+model4<-lm(log(ozone) ~ rad , data = dataO3)
+model5<-lm(log(ozone) ~ temp + wind , data = dataO3)
+model6<-lm(log(ozone) ~ wind + rad , data = dataO3)
+model7<-lm(log(ozone) ~ temp + rad , data = dataO3)
+model8<-lm(log(ozone) ~ temp + wind + rad , data = dataO3)
+model9<-lm(log(ozone) ~ temp + wind + rad + I(temp^2) , data = dataO3)
+model10<-lm(log(ozone) ~ temp + wind + rad + I(wind^2), data
+= dataO3)
+model11<-lm(log(ozone) ~ temp + wind + rad + I(temp^2) + I(wind^2), data = dataO3)
+
+library(MuMIn)
+models_sel <- model.sel(model1,model2,model3,model4,model5,model6,model7,
+model8,model9,model10,model11, rank="AIC")
+
