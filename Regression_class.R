@@ -91,3 +91,7 @@ summary(model8)
 plot(model8)
 # heterocedasticity seems fix as well as qqplot
 
+#function step automatically removes interactions until the top AIC is none.
+model10<-step(model1)
+
+##########
