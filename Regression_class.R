@@ -54,6 +54,8 @@ model1<- lm(ozone~temp*wind*rad +I(rad^2)+I(temp^2)+I(wind^2) , data = dataO3)
 summary(model1)
 # we look at the last column (the pvalues) and remove the most complicated that is not significant.
 
+# High significant pvalus in interactions mean that there is an added effect or potentiated effect.
+
 model2<-update(model1,~. -temp:wind:rad)
 anova(model1,model2)#not significant, can continue 
 summary(model2)
@@ -115,4 +117,13 @@ model11<-lm(log(ozone) ~ temp + wind + rad + I(temp^2) + I(wind^2), data = dataO
 library(MuMIn)
 models_sel <- model.sel(model1,model2,model3,model4,model5,model6,model7,
 model8,model9,model10,model11, rank="AIC")
+
+mod.avg <- summary(model.avg(models_sel,subset=delta <2))
+
+############
+# Multicolinearity, interactions 
+library(car)
+model<- lm(y ~ x + z + w, data = data)
+# Remove one variable at a time and use a model with only the main variables, no cuadratic stuff.
+vif(model8)
 
