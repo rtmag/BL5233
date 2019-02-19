@@ -62,3 +62,19 @@ anova(model2,model3,test="F")
 
 model4<-update(model3,~. - sex:age:weight)
 anova(model3,model4,test="F")
+##############################################
+ Instead of using quasi, we can use the negative binomial distribution.
+ "How many test do we need to achive a number of successes....."?
+ 
+ numbers <- read.table("sexratio.txt",header=T)
+par(mfrow=c(1,2))
+ p<-numbers$males/(numbers$males+numbers$females)
+ plot(numbers$density,p,ylab="Pro portion male")
+ plot(log(numbers$density),p,ylab="Proportion male")
+ 
+ y<-cbind(numbers$males,numbers$females)
+model<-glm(y~density,binomial, data=numbers)
+summary(model) 
+ 
+model1<-glm(y~log(density),binomial, data=numbers)
+ summary(model1) 
