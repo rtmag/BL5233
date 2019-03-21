@@ -28,8 +28,23 @@ plot(var1,smooth=T)
 
 B1A<- gls(f1,correlation=corSpher(form=~x+y,nugget=T),data=Boreality)
 control1 = glsControl(maxIter = 10, msMaxIter = 10, tolerance = 1e-5)
+
 B1B<- gls(f1,correlation=corLin(form=~x+y,nugget=T),data=Boreality,control = control1)
 B1C<- gls(f1,correlation=corRatio(form=~x+y,nugget=T),data=Boreality)
 B1D<- gls(f1,correlation=corGaus(form=~x+y,nugget=T),data=Boreality)
 B1E<- gls(f1,correlation=corExp(form=~x+y,nugget=T),data=Boreality)
 AIC(B1.gls,B1A,B1C,B1D,B1E)
+
+Vario1E <- Variogram(B1E,form =~ x + y, robust = TRUE,maxDist = 2000,resType ="pearson")
+plot(Vario1E,smooth=FALSE)
+
+Vario2E <- Variogram(B1E,form =~ x + y, maxDist =2000,resType = "normalized")
+plot(Vario2E, smooth = FALSE)
+
+#################
+LME can use unbalanced groups to compared, unlike anova.
+RIKZ<-read.table("RIKZ.txt",header=T)
+library(nlme)
+RIKZ$fBeach <-factor(RIKZ$Beach)
+Mlme1 <- lme(Richness ~ NAP, random = ~1 | fBeach, data=RIKZ)
+summary(Mlme1)
