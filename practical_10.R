@@ -20,6 +20,28 @@ B1B<- gls(f1,correlation=corLin(form=~latitude+longitude,nugget=T),data=data,con
 B1C<- gls(f1,correlation=corRatio(form=~latitude+longitude,nugget=T),data=data)
 B1D<- gls(f1,correlation=corGaus(form=~latitude+longitude,nugget=T),data=data)
 B1E<- gls(f1,correlation=corExp(form=~latitude+longitude,nugget=T),data=data)
-AIC(model_noSpace,model_onlyVariety,B1A,B1C,B1D,B1E)
+lme1 <- lme(yield~variety, random = ~1|Block ,data = data)
+lme1_B1C<- lme(yield~variety,correlation=corRatio(form=~latitude+longitude,nugget=T), random = ~1|Block,data=data)
 
-plot(Variogram(model,form=~data$x+data$y))
+AIC(model_onlyVariety,B1A,B1C,B1D,B1E,lme1,lme1_B1C)
+
+plot(Variogram(model,form=~data$latitude+data$longitude))
+# The alternative is to construct a variogram. A variogram measures how quickly spatial autocorrelation 
+# γ(h) falls off with increasing distance.
+# We see that the autocorrelation increases up to approximately 22, then it drops. That would be the range. 
+# Points within 22 distance tend to be related.
+
+library(MuMIn)
+r.squaredGLMM(lme1)
+#The random intercept model explains 29% of the variance and 15% is explained by the fixed effects alone.
+r.squaredGLMM(lme1_B1C)
+#The random intercept model explains 9% of the variance and 9% is explained by the fixed effects alone.
+
+
+data2 = read.table("splityield.txt",header=T)
+
+
+M1 <- lmer (yield ~ irrigation + 
+            (1 |block/density/fertilizer),data=data2)
+
+#random slope siempre es una variable continua
