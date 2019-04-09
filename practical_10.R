@@ -38,6 +38,9 @@ r.squaredGLMM(lme1_B1C)
 #The random intercept model explains 9% of the variance and 9% is explained by the fixed effects alone.
 
 
+### EXERCISE B #####
+
+
 data2 = read.table("splityield.txt",header=T)
 
 
@@ -45,3 +48,23 @@ M1 <- lmer (yield ~ irrigation +
             (1 |block/density/fertilizer),data=data2)
 
 #random slope siempre es una variable continua
+
+library(nlme)
+model= lme
+
+
+#### SOLUCION #######
+library(nlme)
+
+BLOCK is random effect
+Longitud and latituted are for spacial autocorrelation
+
+
+
+
+
+
+
+
+
+
